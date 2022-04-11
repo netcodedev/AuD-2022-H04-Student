@@ -5,13 +5,11 @@ import h04.function.ListToIntFunction;
 import java.util.Comparator;
 import java.util.List;
 
-
 /**
  * A collection that allows to order (sort) the unordered sequence. The sorting algorithm is based on merge-sort, switching to
  * selection-sort when the sequence is small to increase performance.
  *
  * @param <T> the type of the elements in the list that can be sorted
- *
  * @author Nhan Huynh
  */
 public class MyCollections<T> {
@@ -50,7 +48,6 @@ public class MyCollections<T> {
      * Transfers all elements from a list to a list item sequence.
      *
      * @param list the list to transfer from
-     *
      * @return the list item sequence containing the element of the list
      */
     private ListItem<T> listToListItem(List<T> list) {
@@ -73,7 +70,6 @@ public class MyCollections<T> {
      *
      * @param head      the list to sort
      * @param threshold the threshold determining the toggle length
-     *
      * @return the sorted list
      */
     private ListItem<T> adaptiveMergeSortInPlace(ListItem<T> head, int threshold) {
@@ -88,7 +84,6 @@ public class MyCollections<T> {
      *
      * @param head        the list to split
      * @param optimalSize the optimal size after the split
-     *
      * @return the second part of the list
      */
     private ListItem<T> split(ListItem<T> head, int optimalSize) {
@@ -100,7 +95,6 @@ public class MyCollections<T> {
      *
      * @param left  the left sub-sequence
      * @param right the right sub-sequence
-     *
      * @return the merged sorted sequence
      */
     private ListItem<T> merge(ListItem<T> left, ListItem<T> right) {
@@ -111,7 +105,6 @@ public class MyCollections<T> {
      * Sorts the list in place using the selection sort algorithm.
      *
      * @param head the list to sort
-     *
      * @return the sorted list
      */
     private ListItem<T> selectionSortInPlace(ListItem<T> head) {
@@ -124,7 +117,6 @@ public class MyCollections<T> {
      * @param head the list to swap
      * @param i    the index of the first element
      * @param j    the index of the second element
-     *
      * @return the list with the swapped elements
      */
     private ListItem<T> swap(ListItem<T> head, int i, int j) {
@@ -137,7 +129,6 @@ public class MyCollections<T> {
      * @param head the list to search
      * @param low  the lower bound of the sublist
      * @param high the upper bound of the sublist
-     *
      * @return the index of the last maximum element in the list
      */
     private int getMaximumIndex(ListItem<T> head, int low, int high) {

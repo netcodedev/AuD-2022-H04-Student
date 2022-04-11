@@ -29,7 +29,6 @@ public final class SortingExperiment {
         throw new RuntimeException("H3.2 - not implemented"); // TODO: H3.2 - remove if implemented
     }
 
-
     /**
      * Computes the most optimal threshold for runs and inversions in consideration to the least CPU time.
      *
@@ -38,7 +37,6 @@ public final class SortingExperiment {
      * @param bins  the number of bins in which the key figures of runs and inversions are to be grouped respectively
      * @param gamma the minimum proportion of the threshold to be tried for a bin should be tried for a bin to determine a valid
      *              result
-     *
      * @return the most optimal threshold for runs and inversions
      */
     public static @Nullable Integer[][] computeOptimalThresholds(int n, int swaps, int bins, double gamma) {
@@ -51,7 +49,6 @@ public final class SortingExperiment {
      * @param list the list to be checked
      * @param cmp  the comparator used to compare elements
      * @param <T>  the type of the elements
-     *
      * @return {@code true} if the list is sorted, {@code false} otherwise
      */
     private static <T> boolean isSorted(List<T> list, Comparator<? super T> cmp) {

@@ -13,7 +13,6 @@ public interface DoubleToIntFunctionFitter {
      * Fits a function to the given data.
      *
      * @param y the samples
-     *
      * @return the fitted function
      */
     DoubleToIntFunction fitFunction(@Nullable Integer[] y);

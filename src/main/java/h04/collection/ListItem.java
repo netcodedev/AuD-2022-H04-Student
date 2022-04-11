@@ -21,7 +21,6 @@ import org.jetbrains.annotations.Nullable;
  * }</pre>
  *
  * @param <T> type of key
- *
  * @author Nhan Huynh
  */
 public class ListItem<T> {

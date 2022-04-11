@@ -34,7 +34,6 @@ public final class Permutations {
      * @param elements   the list of elements
      * @param comparator the comparator used to compare the elements of the list
      * @param <T>        the type of the elements
-     *
      * @return the number of runs in the specified list
      */
     public static <T> int computeNumberOfRuns(List<T> elements, Comparator<? super T> comparator) {
@@ -68,7 +67,6 @@ public final class Permutations {
      * @param elements   the list of elements
      * @param comparator the comparator used to compare the elements of the list
      * @param <T>        the type of the elements
-     *
      * @return the number of inversions in the specified list
      */
     public static <T> int computeNumberOfInversions(List<T> elements, Comparator<? super T> comparator) {

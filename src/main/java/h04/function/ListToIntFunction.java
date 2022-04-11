@@ -18,9 +18,7 @@ public interface ListToIntFunction<T> {
      * Applies this function to the given argument.
      *
      * @param elements the function argument
-     *
      * @return the function result
-     *
      * @throws NullPointerException if the given argument is {@code null}
      */
     int apply(List<T> elements);
