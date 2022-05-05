@@ -4,7 +4,7 @@ import java.util.Comparator;
 import java.util.List;
 
 /**
- * Represents a function that accepts a double-valued argument and produces an int-valued result.
+ * Represents a function that accepts a list-valued argument and produces an int-valued result.
  *
  * <p>The function values are calculated by the ratio of inversions and the maximum number of inversions.
  *
