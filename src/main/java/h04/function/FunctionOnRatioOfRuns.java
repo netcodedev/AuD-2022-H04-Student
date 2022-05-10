@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * Represents a function that accepts a list-valued argument and produces an int-valued result.
  *
- * <p>The function values are calculated by the ratio of runs and the number of elements.
+ * <p>The function values are calculated by the ratio of runs to the number of elements.
  *
  * @author Nhan Huynh
  */

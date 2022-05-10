@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * Represents a function that accepts a list-valued argument and produces an int-valued result.
  *
- * <p>The function values are calculated by the ratio of inversions and the maximum number of inversions.
+ * <p>The function values are calculated by the ratio of inversions to the maximum number of inversions.
  *
  * @author Nhan Huynh
  */
