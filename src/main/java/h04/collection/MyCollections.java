@@ -110,28 +110,4 @@ public class MyCollections<T> {
     private ListItem<T> selectionSortInPlace(ListItem<T> head) {
         throw new RuntimeException("H2.3 - not implemented"); // TODO: H2.3 - remove if implemented
     }
-
-    /**
-     * Swaps two elements in the list.
-     *
-     * @param head the list to swap
-     * @param i    the index of the first element
-     * @param j    the index of the second element
-     * @return the list with the swapped elements
-     */
-    private ListItem<T> swap(ListItem<T> head, int i, int j) {
-        throw new RuntimeException("H2.3 - not implemented"); // TODO: H2.3 - remove if implemented
-    }
-
-    /**
-     * Returns the index of the last maximum element in the list.
-     *
-     * @param head the list to search
-     * @param low  the lower bound of the sublist
-     * @param high the upper bound of the sublist
-     * @return the index of the last maximum element in the list
-     */
-    private int getMaximumIndex(ListItem<T> head, int low, int high) {
-        throw new RuntimeException("H2.3 - not implemented"); // TODO: H2.3 - remove if implemented
-    }
 }
