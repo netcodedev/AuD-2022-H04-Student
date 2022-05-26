@@ -240,7 +240,7 @@ public class PublicTests {
     }
 
     @ParameterizedTest(name = "f({0}) = {1}")
-    @CsvSource({"0,10", "0.25,7", "0.5,4", "0.75,3", "1,8"})
+    @CsvSource({"0,10", "0.25,4", "0.5,5", "0.75,3", "1,8"})
     void testLinearInterpolation(String xValue, String expectedValue) {
         double x = Double.parseDouble(xValue);
         int expected = Integer.parseInt(expectedValue);
@@ -252,7 +252,7 @@ public class PublicTests {
     }
 
     @ParameterizedTest(name = "f({0}) = {1}")
-    @CsvSource({"0,8", "0.25,7", "0.5,6", "0.75,5", "1,4"})
+    @CsvSource({"0,8", "0.25,4", "0.5,6", "0.75,5", "1,4"})
     void testLinearRegressionString(String xValue, String expectedValue) {
         double x = Double.parseDouble(xValue);
         int expected = Integer.parseInt(expectedValue);
