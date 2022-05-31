@@ -21,8 +21,9 @@ public class PublicTests {
         @Test
         void testLinearDoubleToIntFunction() {
             var function = new LinearDoubleToIntFunction(3, 10);
-            assertEquals(19, function.apply(3));
-            assertEquals(15, function.apply(1.5));
+            assertEquals(10, function.apply(0.0));
+            assertEquals(12, function.apply(0.5));
+            assertEquals(13, function.apply(1.0));
         }
 
         @Test
