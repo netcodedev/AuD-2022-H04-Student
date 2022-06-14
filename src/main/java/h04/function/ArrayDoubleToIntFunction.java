@@ -48,6 +48,24 @@ public class ArrayDoubleToIntFunction implements DoubleToIntFunction {
      */
     @Override
     public int apply(double value) {
-        throw new RuntimeException("H1.1 - not implemented"); // TODO: H1.1 - remove if implemented
+        if(value < 0.0 || value > 1.0){
+            throw new IllegalArgumentException();
+        }
+        double val = value*(elements.length-1);
+        for(int i = 0; i<elements.length; i++){
+            if(Math.abs(val-i)<=DELTA){
+                return elements[i];
+            }
+        }
+        double xlower = Math.floor(val);
+        double xupper = Math.ceil(val);
+        if(xlower == xupper){
+            xlower -= 1;
+        }
+        int ylower = elements[(int)xlower];
+        int yupper = elements[(int)xupper];
+        double slope = (yupper-ylower)/(xupper-xlower);
+        var ret = (int) Math.round(ylower + slope*(val-xlower));
+        return ret;
     }
 }

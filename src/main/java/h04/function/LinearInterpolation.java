@@ -20,6 +20,29 @@ public class LinearInterpolation implements DoubleToIntFunctionFitter {
 
     @Override
     public DoubleToIntFunction fitFunction(@Nullable Integer[] y) {
-        throw new RuntimeException("H3.1 - not implemented"); // TODO: H3.1 - remove if implemented
+        int[] vars = new int[y.length];
+        int firstNullIndex = -1;
+        Integer lastNonNullValue = -1;
+        for(int i = 0; i<y.length; i++){
+            if(y[i] != null){
+                vars[i] = (int) Math.round(y[i]);
+                if(firstNullIndex != -1){
+                    //fill values at index firstNullIndex until i-1
+                    for(int j = firstNullIndex; j<i; j++){
+                        double xlower = firstNullIndex-1;
+                        double xupper = i;
+                        double ylower = lastNonNullValue;
+                        double yupper = y[i];
+                        double slope = (yupper-ylower)/(xupper-xlower);
+                        vars[j] = (int) Math.round(ylower + slope*(j-xlower));
+                    }
+                    firstNullIndex = -1;
+                }
+                lastNonNullValue = y[i];
+            } else if(firstNullIndex == -1) {
+                firstNullIndex = i;
+            }
+        }
+        return new ArrayDoubleToIntFunction(vars);
     }
 }

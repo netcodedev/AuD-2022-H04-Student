@@ -30,6 +30,18 @@ public class FunctionOnRatioOfRuns<T> extends FunctionOnDegreeOfDisorder<T> {
 
     @Override
     public int apply(List<T> elements) {
-        throw new RuntimeException("H1.2 - not implemented"); // TODO: H1.2 - remove if implemented
+        T last = null;
+        int sequences = 1;
+        for(T t : elements){
+            if(last == null){
+                last = t;
+                continue;
+            }
+            if(cmp.compare(last, t) > 0){
+                sequences++;
+            }
+            last = t;
+        }
+        return function.apply((double)sequences/(double)elements.size());
     }
 }

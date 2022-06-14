@@ -30,6 +30,16 @@ public class FunctionOnRatioOfInversions<T> extends FunctionOnDegreeOfDisorder<T
 
     @Override
     public int apply(List<T> elements) {
-        throw new RuntimeException("H1.2 - not implemented"); // TODO: H1.2 - remove if implemented
+        int inversions = 0;
+        int possibleInversions = 0;
+        for(int i = 0; i<elements.size(); i++){
+            for(int j = i+1; j<elements.size(); j++){
+                if(cmp.compare(elements.get(i), elements.get(j))>0){
+                    inversions++;
+                }
+                possibleInversions++;
+            }
+        }
+        return function.apply((double)inversions/(double)possibleInversions);
     }
 }

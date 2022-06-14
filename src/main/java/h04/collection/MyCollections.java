@@ -2,6 +2,7 @@ package h04.collection;
 
 import h04.function.ListToIntFunction;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
@@ -41,7 +42,9 @@ public class MyCollections<T> {
      * @param list the list to sort
      */
     public void sort(List<T> list) {
-        throw new RuntimeException("H2.1 - not implemented"); // TODO: H2.1 - remove if implemented
+        ListItem<T> head = listToListItem(list);
+        head = adaptiveMergeSortInPlace(head, function.apply(list));
+        listItemToList(head, list);
     }
 
     /**
@@ -51,7 +54,14 @@ public class MyCollections<T> {
      * @return the list item sequence containing the element of the list
      */
     private ListItem<T> listToListItem(List<T> list) {
-        throw new RuntimeException("H2.1 - not implemented"); // TODO: H2.1 - remove if implemented
+        ListItem<T> head = new ListItem<>();
+        var iterator = head;
+        for(T t : list){
+            iterator = iterator.next = new ListItem<>();
+            iterator.key = t;
+        }
+        head = head.next;
+        return head;
     }
 
     /**
@@ -61,7 +71,17 @@ public class MyCollections<T> {
      * @param list the list to transfer to
      */
     private void listItemToList(ListItem<T> head, List<T> list) {
-        throw new RuntimeException("H2.1 - not implemented"); // TODO: H2.1 - remove if implemented
+        int index = 0;
+        var iterator = head;
+        while(iterator != null){
+            if(index >= list.size()){
+                list.add(index,iterator.key);
+            } else {
+                list.set(index, iterator.key);
+            }
+            iterator = iterator.next;
+            index++;
+        }
     }
 
     /**
@@ -73,7 +93,14 @@ public class MyCollections<T> {
      * @return the sorted list
      */
     private ListItem<T> adaptiveMergeSortInPlace(ListItem<T> head, int threshold) {
-        throw new RuntimeException("H2.2 - not implemented"); // TODO: H2.2 - remove if implemented
+        ArrayList<T> list = new ArrayList<>();
+        listItemToList(head, list);
+        if(list.size() > threshold){
+            var second = split(head, threshold);
+            return merge(adaptiveMergeSortInPlace(head, threshold),adaptiveMergeSortInPlace(second, threshold));
+        } else {
+            return selectionSortInPlace(head);
+        }
     }
 
     /**
@@ -87,7 +114,27 @@ public class MyCollections<T> {
      * @return the second part of the list
      */
     private ListItem<T> split(ListItem<T> head, int optimalSize) {
-        throw new RuntimeException("H2.2 - not implemented"); // TODO: H2.2 - remove if implemented
+        var second = head;
+        ArrayList<T> list = new ArrayList<>();
+        listItemToList(second, list);
+        while(list.size() > optimalSize){
+            list = new ArrayList<>();
+            if(second.next == null){
+                break;
+            }
+            second = second.next;
+            listItemToList(second, list);
+        }
+        // remove second sequence from first sequence
+        var iterator = head;
+        while(iterator.next != second){
+            iterator = iterator.next;
+            if(iterator == null){
+                return second;
+            }
+        }
+        iterator.next = null;
+        return second;
     }
 
     /**
@@ -98,7 +145,27 @@ public class MyCollections<T> {
      * @return the merged sorted sequence
      */
     private ListItem<T> merge(ListItem<T> left, ListItem<T> right) {
-        throw new RuntimeException("H2.2 - not implemented"); // TODO: H2.2 - remove if implemented
+        var head = (cmp.compare(left.key,right.key)<=0)?left:right;
+        var iterator = head;
+        var leftIterator = (head == left)?left.next:left;
+        var rightIterator = (head == right)?right.next:right;
+        while(leftIterator != null || rightIterator != null){
+            if(leftIterator == null){
+                iterator.next = rightIterator;
+                rightIterator = rightIterator.next;
+            } else if(rightIterator == null){
+                iterator.next = leftIterator;
+                leftIterator = leftIterator.next;
+            } else if(cmp.compare(leftIterator.key, rightIterator.key)<=0){
+                iterator.next = leftIterator;
+                leftIterator = leftIterator.next;
+            } else if(cmp.compare(leftIterator.key, rightIterator.key)>=0){
+                iterator.next = rightIterator;
+                rightIterator = rightIterator.next;
+            }
+            iterator = iterator.next;
+        }
+        return head;
     }
 
     /**
@@ -108,6 +175,51 @@ public class MyCollections<T> {
      * @return the sorted list
      */
     private ListItem<T> selectionSortInPlace(ListItem<T> head) {
-        throw new RuntimeException("H2.3 - not implemented"); // TODO: H2.3 - remove if implemented
+        var iterator = head;
+        ListItem<T> iteratorParent = null;
+        while(iterator != null){
+            var innerIterator = iterator.next;
+            var previous = iterator;
+            ListItem<T> smallestParent = null;
+            ListItem<T> smallest = iterator;
+            while(innerIterator != null){
+                if(cmp.compare(innerIterator.key,smallest.key) < 0){
+                    smallestParent = previous;
+                    smallest = innerIterator;
+                }
+                innerIterator = innerIterator.next;
+            }
+            if(smallest != null && smallest != iterator){
+                if(iteratorParent == null){
+                    var temp = head;
+                    head = smallest;
+                    if(temp.next == smallest){
+                        temp.next = temp.next.next;
+                        head.next = temp;
+                    } else {
+                        head.next = temp.next;
+                        smallestParent.next = smallestParent.next.next;
+                    }
+                    iterator = head;
+                } else {
+                    var temp = iterator;
+                    iteratorParent.next = smallest;
+                    if(temp.next == smallest){
+                        temp.next = temp.next.next;
+                        iteratorParent.next.next = temp;
+                    } else {
+                        iteratorParent.next.next = temp.next;
+                        smallestParent.next = smallestParent.next.next;
+                    }
+                }
+                smallest = null;
+                smallestParent = null;
+            }
+            
+
+            iteratorParent = iterator;
+            iterator = iterator.next;
+        }
+        return head;
     }
 }

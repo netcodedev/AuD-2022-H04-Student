@@ -32,6 +32,6 @@ public class LinearDoubleToIntFunction implements DoubleToIntFunction {
 
     @Override
     public int apply(double value) {
-        throw new RuntimeException("H1.1 - not implemented"); // TODO: H1.1 - remove if implemented
+        return (int) Math.round(a*value+b);
     }
 }
